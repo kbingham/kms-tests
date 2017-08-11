@@ -1,0 +1,45 @@
+du-tests
+--------
+
+Test suite for the Renesas R-Car DU display unit.
+
+You can find the latest version of du-tests in the project's git tree at
+
+	git://git.ideasonboard.com/renesas/du-tests.git
+	http://git.ideasonboard.com/renesas/du-tests.git
+
+
+-----------------------
+Building and Installing
+-----------------------
+
+The du-tests suite is written in Python and doesn't have any build time
+dependency. To install it, run
+
+	make install INSTALL_DIR=/path/to/target/directory
+
+This will copy the test scripts to the target directory to be copied or
+exported to the host.
+
+
+--------------------
+Runtime Dependencies
+--------------------
+
+The tests scripts require the following dependencies to be installed on the
+target.
+
+* Python 3
+* kmsxx Python bindings (https://github.com/tomba/kmsxx.git)
+
+kmsxx hasn't released any stable version yet, it is recommended to use the
+latest master branch from the git repository.
+
+
+-----------------
+Running the Tests
+-----------------
+
+The test scripts are named kms-test-*.py. They can be run directly from the
+test suite root directory.
+
