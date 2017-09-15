@@ -310,6 +310,7 @@ class KMSTest(object):
         self.logger.flush()
         sys.stdout.write("\rTesting %s: FAIL\n" % self.test_name)
         sys.stdout.flush()
+        return self.fail
 
     def skip(self, reason):
         """Complete a test with skip."""
@@ -317,6 +318,7 @@ class KMSTest(object):
         self.logger.flush()
         sys.stdout.write("SKIP\n")
         sys.stdout.flush()
+        return self.skip
 
     def success(self):
         """Complete a test with success."""
@@ -324,4 +326,5 @@ class KMSTest(object):
         self.logger.flush()
         sys.stdout.write("\rTesting %s: SUCCESS\n" % self.test_name)
         sys.stdout.flush()
+        return self.success
 
