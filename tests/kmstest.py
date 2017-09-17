@@ -109,6 +109,26 @@ class KernelLogReader(object):
         return msgs
 
 
+def KernelLogValidator(test_function):
+    kernel_fault_strings = ("Kernel panic", "Oops", "WARNING:")
+
+    def kernel_log_validator(self):
+        klog = KernelLogReader()
+        fault = False
+
+        test_function(self)
+
+        kmsgs = klog.read()
+        for msg in kmsgs:
+            if any(s in msg.msg for s in kernel_fault_strings):
+                fault = True
+
+        if fault:
+            self.fail("Post Test Kernel Fault Found")
+
+    return kernel_log_validator
+
+
 class Logger(object):
     def __init__(self, name):
         self.logfile = open("%s.log" % name, "w")
@@ -265,6 +285,7 @@ class KMSTest(object):
         sys.stdin.readline()
         self.loop.stop()
 
+    @KernelLogValidator
     def execute(self):
         """Execute the test by running the main function."""
         self.main()
