@@ -8,6 +8,7 @@ import selectors
 import sys
 import time
 
+
 class Timer(object):
     def __init__(self, timeout, callback):
         self.timeout = time.clock_gettime(time.CLOCK_MONOTONIC) + timeout
@@ -327,4 +328,3 @@ class KMSTest(object):
         sys.stdout.write("\rTesting %s: SUCCESS\n" % self.test_name)
         sys.stdout.flush()
         return self.success
-
