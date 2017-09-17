@@ -197,7 +197,7 @@ class KMSTest(object):
 
         req = pykms.AtomicReq(self.card)
         req.add(connector, 'CRTC_ID', crtc.id)
-        req.add(crtc, { 'ACTIVE': 1, 'MODE_ID': mode_blob.id })
+        req.add(crtc, {'ACTIVE': 1, 'MODE_ID': mode_blob.id})
         if fb:
             req.add(crtc.primary_plane, {
                         'FB_ID': fb.id,
@@ -238,7 +238,7 @@ class KMSTest(object):
     def atomic_planes_disable(self, sync=True):
         req = pykms.AtomicReq(self.card)
         for plane in self.card.planes:
-            req.add(plane, { "FB_ID": 0, 'CRTC_ID': 0 })
+            req.add(plane, {"FB_ID": 0, 'CRTC_ID': 0})
 
         if sync:
             return req.commit_sync()
