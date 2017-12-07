@@ -204,7 +204,7 @@ class KMSTest(object):
         if sync:
             return req.commit_sync(True)
         else:
-            return req.commit(self, True)
+            return req.commit(0, True)
 
     def atomic_crtc_mode_set(self, crtc, connector, mode, fb=None, sync=False):
         """Perform a mode set on the given connector and CRTC. The framebuffer,
@@ -234,7 +234,7 @@ class KMSTest(object):
         if sync:
             return req.commit_sync(True)
         else:
-            return req.commit(self, True)
+            return req.commit(0, True)
 
     def atomic_plane_set(self, plane, crtc, source, destination, fb, sync=False):
         req = pykms.AtomicReq(self.card)
@@ -253,7 +253,7 @@ class KMSTest(object):
         if sync:
             return req.commit_sync()
         else:
-            return req.commit(self)
+            return req.commit(0)
 
     def atomic_planes_disable(self, sync=True):
         req = pykms.AtomicReq(self.card)
@@ -263,7 +263,7 @@ class KMSTest(object):
         if sync:
             return req.commit_sync()
         else:
-            return req.commit(self)
+            return req.commit(0)
 
     def __handle_page_flip(self, frame, time):
         self.flips += 1
